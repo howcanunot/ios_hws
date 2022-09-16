@@ -35,7 +35,6 @@ class ViewController: UIViewController {
         while colorsSet.count < views.count {
             colorsSet.insert(GetRandomUIColor())
         }
-        
         return colorsSet
     }
     
