@@ -13,25 +13,36 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        var colorsSet = CreateColorsSet()
+        SetViewsBgColor(colors: &colorsSet, corenerRaduis: 16)
     }
 
     @IBAction func ChangeColorButtonPressed(_ sender: Any) {
         let button = sender as? UIButton
         button?.isEnabled = false
 
+        var colorsSet = CreateColorsSet()
+        
+        UIView.animate(withDuration: 1, animations: {
+            self.SetViewsBgColor(colors: &colorsSet, corenerRaduis: 16)
+        }) { completion in
+            button?.isEnabled = true
+        }
+    }
+    
+    private func CreateColorsSet() -> Set<UIColor> {
         var colorsSet = Set<UIColor>()
         while colorsSet.count < views.count {
             colorsSet.insert(GetRandomUIColor())
         }
         
-        view.layer.cornerRadius = 10
-        UIView.animate(withDuration: 1, animations: {
-            for view in self.views {
-                view.layer.cornerRadius = 10
-                view.backgroundColor = colorsSet.popFirst()
-            }
-        }) { completion in
-            button?.isEnabled = true
+        return colorsSet
+    }
+    
+    private func SetViewsBgColor(colors: inout Set<UIColor>, corenerRaduis: CGFloat) {
+        for view in self.views {
+            view.layer.cornerRadius = corenerRaduis
+            view.backgroundColor = colors.popFirst()
         }
     }
     
