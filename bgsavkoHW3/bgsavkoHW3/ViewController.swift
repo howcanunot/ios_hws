@@ -1,11 +1,11 @@
 import UIKit
 
 final class WelcomeViewController: UIViewController {
-    let colorPaletteView = ColorPlatteView()
-    let incrementButton = UIButton()
-    let valueLabel = UILabel()
-    let commentLabel = UILabel()
-    var value = 0
+    private let colorPaletteView = ColorPlatteView()
+    private let incrementButton = UIButton()
+    private let valueLabel = UILabel()
+    private let commentLabel = UILabel()
+    private var value = 0
     
 
     override func viewDidLoad() {
